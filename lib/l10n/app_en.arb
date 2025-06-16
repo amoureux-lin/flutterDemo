@@ -1,0 +1,29 @@
+{
+  "@@locale": "en",
+  "title_home": "Home",
+
+  "nav_home": "Home",
+  "nav_party": "Party",
+  "nav_plaza": "Plaza",
+  "nav_club": "Club",
+  "nav_profile": "Profile",
+
+  "settings_title": "Settings",
+  "theme_label": "Current Theme",
+  "theme_button": "Switch Theme",
+  "locale_label": "Current Language",
+  "locale_button": "Switch Language",
+  "theme_light": "Light Mode",
+  "theme_dark": "Dark Mode",
+  "theme_system": "Follow System",
+  "lang_zh": "简体中文",
+  "lang_en": "English",
+
+
+
+  "dialogTitle": "Confirmation",
+  "dialogContent": "Are you sure you want to continue?",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "loading": "Loading..."
+}
