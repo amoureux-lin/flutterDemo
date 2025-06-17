@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
 class RecommendView extends ConsumerWidget {
   const RecommendView({super.key});
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListView(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       children: [
@@ -25,6 +24,7 @@ class RecommendView extends ConsumerWidget {
           comments: 52,
           gifts: 50,
           isFollowed: false, // 初始未关注
+          isSex: true,
         ),
         // 模拟图片中的第二个 Feed Item (六月的风) - 已去除发布按钮
         _buildFeedItem(
@@ -37,6 +37,7 @@ class RecommendView extends ConsumerWidget {
           comments: 0,
           gifts: 0,
           isFollowed: true, // 已关注
+          isSex: false,
         ),
         // 您可以根据需要添加更多模拟帖子
         _buildFeedItem(
@@ -49,6 +50,7 @@ class RecommendView extends ConsumerWidget {
           comments: 20,
           gifts: 5,
           isFollowed: false,
+          isSex: true,
         ),
       ],
     );
@@ -65,31 +67,52 @@ class RecommendView extends ConsumerWidget {
             hash: '#',
             title: '热门话题',
             subtitle: '搜索更多话题',
+            onTap: () => {print("AAAA")},
           ),
           _buildTopicTag(
             hash: '#',
             title: '#骗子酒馆', // 根据图片修正
             subtitle: '11499条动态',
+            onTap: () {
+              print('点击了 热门话题');
+              // 这里可以添加点击后跳转到热门话题页面等逻辑
+            },
           ),
           _buildTopicTag(
             hash: '#',
             title: '#最',
             subtitle: '11499条动态',
+            onTap: () {
+              print('点击了 热门话题');
+              // 这里可以添加点击后跳转到热门话题页面等逻辑
+            },
           ),
           _buildTopicTag(
             hash: '#',
             title: '#最',
             subtitle: '323条动态',
+            onTap: () {
+              print('点击了 热门话题');
+              // 这里可以添加点击后跳转到热门话题页面等逻辑
+            },
           ),
           _buildTopicTag(
             hash: '#',
             title: '#最',
             subtitle: '323条动态',
+            onTap: () {
+              print('点击了 热门话题');
+              // 这里可以添加点击后跳转到热门话题页面等逻辑
+            },
           ),
           _buildTopicTag(
             hash: '#',
             title: '#最',
             subtitle: '323条动态',
+            onTap: () {
+              print('点击了 热门话题');
+              // 这里可以添加点击后跳转到热门话题页面等逻辑
+            },
           ),
           // 添加更多标签...
         ],
@@ -97,57 +120,67 @@ class RecommendView extends ConsumerWidget {
     );
   }
 
-  // 话题标签的具体实现，包含两行文字 (已修改为匹配最新图片样式)
+  // 话题标签的具体实现，包含两行文字
   Widget _buildTopicTag(
-      {required String hash, required String title, required String subtitle}) {
+      {required String hash,
+      required String title,
+      required String subtitle,
+      VoidCallback? onTap}) {
     return Container(
-      padding:
-          const EdgeInsets.symmetric(horizontal: 5, vertical: 6), // 调整整个标签的内边距
-      child: Row(
-        mainAxisSize: MainAxisSize.min, // 让Row只占用所需空间
-        crossAxisAlignment: CrossAxisAlignment.center, // 垂直居中对齐
-        children: [
-          Container(
-            width: 35, // 设置固定的宽度，可以调整
-            height: 35, // 设置固定的高度，与宽度相同以形成正方形
-            alignment: Alignment.center, // 确保子内容（#符号）在Container内居中
-            decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 153, 153, 153), // # 符号的深灰色背景
-              borderRadius: BorderRadius.circular(4), // 圆角方形
-            ),
-            child: Text(
-              hash,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.white, // # 符号颜色为白色
-              ),
-            ),
-          ),
-          const SizedBox(width: 8), // # 符号和文字之间的间距
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center, // 确保文字垂直居中
+      margin: const EdgeInsets.only(right: 8), // 标签之间的外部间距
+      child: InkWell(
+        onTap: onTap, // 将传入的onTap回调赋给InkWell
+        splashFactory: NoSplash.splashFactory, // 移除波纹效果
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: 10, vertical: 8), // 调整整个标签的内边距
+          child: Row(
+            mainAxisSize: MainAxisSize.min, // 让Row只占用所需空间
+            crossAxisAlignment: CrossAxisAlignment.center, // 垂直居中对齐
             children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 58, 58, 58), // 标题颜色调整为深色
+              Container(
+                width: 35, // 设置固定的宽度，可以调整
+                height: 35, // 设置固定的高度，与宽度相同以形成正方形
+                alignment: Alignment.center, // 确保子内容（#符号）在Container内居中
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 153, 153, 153), // # 符号的深灰色背景
+                  borderRadius: BorderRadius.circular(4), // 圆角方形
+                ),
+                child: Text(
+                  hash,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white, // # 符号颜色为白色
+                  ),
                 ),
               ),
-              const SizedBox(height: 2), // 标题和副标题之间的间距
-              Text(
-                subtitle,
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: Color(0xFF909090), // 副标题颜色调整为灰色
-                ),
+              const SizedBox(width: 8), // # 符号和文字之间的间距
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center, // 确保文字垂直居中
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 58, 58, 58), // 标题颜色调整为深色
+                    ),
+                  ),
+                  const SizedBox(height: 2), // 标题和副标题之间的间距
+                  Text(
+                    subtitle,
+                    style: const TextStyle(
+                      fontSize: 12, // 副标题字体大小和标题保持一致，如果需要可以再改小
+                      color: Color(0xFF909090), // 副标题颜色调整为灰色
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -157,7 +190,7 @@ class RecommendView extends ConsumerWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFF6F6F6), // 图片中的背景色
+        color: const Color.fromARGB(255, 240, 239, 239), // 图片中的背景色
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
@@ -181,11 +214,12 @@ class RecommendView extends ConsumerWidget {
             icon: const Icon(Icons.add, size: 18),
             label: const Text('添加游戏', style: TextStyle(fontSize: 14)),
             style: OutlinedButton.styleFrom(
+              fixedSize: const Size(220, 30), // 宽 200，高 50
               foregroundColor: const Color(0xFF333333), // 文字和图标颜色
               backgroundColor: Colors.white, // 按钮背景色
-              side: BorderSide.none, // 无边框
+              side: BorderSide(color: Colors.grey, width: 1),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(6),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             ),
@@ -206,6 +240,7 @@ class RecommendView extends ConsumerWidget {
     required int comments,
     required int gifts,
     required bool isFollowed,
+    required bool isSex,
   }) {
     return Container(
       margin: const EdgeInsets.only(top: 16),
@@ -219,10 +254,10 @@ class RecommendView extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildUserHeader(
-            username: username,
-            time: time,
-            isFollowed: isFollowed,
-          ),
+              username: username,
+              time: time,
+              isFollowed: isFollowed,
+              isSex: isSex),
           const SizedBox(height: 8),
           Text(content,
               style: const TextStyle(
@@ -236,12 +271,12 @@ class RecommendView extends ConsumerWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
-                color: const Color(0xFFF4F4F4),
-                borderRadius: BorderRadius.circular(4),
+                color: const Color.fromARGB(255, 223, 222, 222),
+                borderRadius: BorderRadius.circular(10),
               ),
               child: Text(hashtag,
                   style: const TextStyle(
-                      color: Colors.blue, fontSize: 13)), // 蓝色话题文字
+                      color: Color.fromARGB(255, 10, 10, 10), fontSize: 13)), // 蓝色话题文字
             ),
           ],
           const SizedBox(height: 8),
@@ -256,6 +291,7 @@ class RecommendView extends ConsumerWidget {
     required String username,
     required String time,
     required bool isFollowed,
+    required bool isSex,
   }) {
     return Row(
       children: [
@@ -274,8 +310,11 @@ class RecommendView extends ConsumerWidget {
                           color: Color(0xFF333333))), // 字体大小和颜色
                   const SizedBox(width: 4),
                   // 图片中的紫色小图标
-                  const Icon(Icons.card_membership,
-                      color: Color(0xFFB17DED), size: 14),
+                  isSex
+                      ? const Icon(Icons.man,
+                          color: Color.fromARGB(255, 97, 154, 240), size: 14)
+                      : const Icon(Icons.woman,
+                          color: Color.fromARGB(255, 236, 127, 203), size: 14),
                 ],
               ),
               Text(time,
@@ -287,24 +326,34 @@ class RecommendView extends ConsumerWidget {
         TextButton(
           onPressed: () {},
           style: TextButton.styleFrom(
-            backgroundColor: isFollowed
-                ? const Color(0xFFF4F4F4)
-                : const Color(0xFFFFF1E3), // 已关注灰色，未关注浅橙色
-            foregroundColor: isFollowed
-                ? const Color(0xFF909090)
-                : const Color(0xFFFF9900), // 已关注文字灰色，未关注文字橙色
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+            backgroundColor: Colors.white, // 背景白色
+            foregroundColor: const Color(0xFFFF9900), // 文字橘色
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
             minimumSize: Size.zero,
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(5),
+              side: const BorderSide(color: Color(0xFFFF9900)), // 橘色描边
             ),
           ),
           child: Text(isFollowed ? '已关注' : '关注'),
         ),
-        const SizedBox(width: 8),
-        const Icon(Icons.more_horiz,
-            color: Color(0xFF909090), size: 20), // 三点菜单颜色和大小
+        SizedBox(
+          width: 24,
+          height: 24,
+          child: IconButton(
+            icon:
+                const Icon(Icons.more_vert, size: 24, color: Color(0xFF909090)),
+            onPressed: () {
+              print("111");
+            },
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent, // 去除高亮
+            hoverColor: Colors.transparent,
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
+          ),
+        ),
       ],
     );
   }
@@ -350,54 +399,60 @@ class RecommendView extends ConsumerWidget {
   }) {
     return Row(
       children: [
-        Icon(Icons.favorite_border, size: 18, color: Colors.grey[600]),
+        Icon(Icons.favorite_border, size: 20, color: Colors.grey[600]),
         const SizedBox(width: 4),
         Text('$likes',
             style: const TextStyle(
                 color: Color(0xFF909090), fontSize: 13)), // 数字颜色
         const SizedBox(width: 16),
-        Icon(Icons.mode_comment_outlined, size: 18, color: Colors.grey[600]),
+        Icon(Icons.mode_comment_outlined, size: 20, color: Colors.grey[600]),
         const SizedBox(width: 4),
         Text('$comments',
             style: const TextStyle(
                 color: Color(0xFF909090), fontSize: 13)), // 数字颜色
         const SizedBox(width: 16),
         const Icon(Icons.ios_share,
-            size: 18, color: Color(0xFF909090)), // 分享图标，更接近iOS样式
+            size: 20, color: Color(0xFF909090)), // 分享图标，更接近iOS样式
         const SizedBox(width: 16),
         // 右侧重叠头像和礼物
         const Spacer(), // 将右侧内容推到最右边
-        Stack(
-          alignment: Alignment.centerRight, // 将Stack的内容靠右对齐
-          children: [
-            Positioned(
-              right: 28, // 调整位置以实现重叠
-              child:
-                  CircleAvatar(radius: 8, backgroundColor: Colors.orange[200]),
-            ),
-            Positioned(
-              right: 14,
-              child:
-                  CircleAvatar(radius: 8, backgroundColor: Colors.orange[300]),
-            ),
-            CircleAvatar(
-                radius: 8, backgroundColor: Colors.orange[400]), // 最前面的头像
-            const SizedBox(width: 20), // 为礼物图标和数字预留空间
-            // 礼物图标和数字
-            Positioned(
-              right: -35, // 负值表示向右超出Stack边界，根据实际调整
-              child: Row(
-                children: [
-                  const Icon(Icons.card_giftcard,
-                      size: 18, color: Color(0xFF909090)),
-                  const SizedBox(width: 4),
-                  Text('$gifts',
-                      style: const TextStyle(
-                          color: Color(0xFF909090), fontSize: 13)),
-                ],
+        SizedBox(
+          width: 100,
+          height: 30, // 足够容纳头像和礼物图标
+          child: Stack(
+            alignment: Alignment.centerRight,
+            children: [
+              Positioned(
+                right: 40,
+                child: CircleAvatar(
+                    radius: 10, backgroundColor: Color(0xFFC4B9A9)),
               ),
-            ),
-          ],
+              Positioned(
+                right: 55,
+                child: CircleAvatar(
+                    radius: 10, backgroundColor: Colors.orange[300]),
+              ),
+              Positioned(
+                right: 70,
+                child: CircleAvatar(
+                    radius: 10, backgroundColor: Color(0xFF86C772)),
+              ),
+              // 礼物图标和数字
+              Positioned(
+                right: 0,
+                child: Row(
+                  children: [
+                    const Icon(Icons.card_giftcard,
+                        size: 18, color: Color(0xFF909090)),
+                    const SizedBox(width: 4),
+                    Text('$gifts',
+                        style: const TextStyle(
+                            color: Color(0xFF909090), fontSize: 13)),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );
