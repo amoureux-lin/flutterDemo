@@ -32,7 +32,7 @@ class SettingsPage extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text(loc.settings_title)),
+      appBar: AppBar(title: Text(loc.settings_title),centerTitle: true,),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

@@ -4,90 +4,108 @@ import 'package:flutter/material.dart';
 final ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
   useMaterial3: true,
-  scaffoldBackgroundColor: Colors.white,
-  colorScheme: ColorScheme.fromSeed(
-    seedColor: Colors.orange,
-    brightness: Brightness.light,
+  fontFamily: 'Roboto', // 可替换为你的自定义字体
+  colorScheme: ColorScheme.light(
+    primary: Colors.blue,
+    onPrimary: Colors.white,
+    secondary: Colors.amber,
+    onSecondary: Colors.black,
+    surface: Colors.white,
+    error: Colors.red,
+    onError: Colors.white,
+    onSurface: Colors.black,
   ),
-  appBarTheme: const AppBarTheme(
-    backgroundColor: Colors.orange,
-    foregroundColor: Colors.white,
-    elevation: 1,
-    titleTextStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-  ),
-  textTheme: const TextTheme(
-    bodyLarge: TextStyle(fontSize: 16, color: Colors.black),
-    bodyMedium: TextStyle(fontSize: 14, color: Colors.black87),
-    titleMedium: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-  ),
-  elevatedButtonTheme: ElevatedButtonThemeData(
-    style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.orange,
-      foregroundColor: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+  scaffoldBackgroundColor: Color(0xFFF5F5F5),
+  appBarTheme: AppBarTheme(
+    backgroundColor: Colors.white,
+    elevation: 0,
+    titleTextStyle: TextStyle(
+      color: Colors.black,
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
     ),
   ),
-  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-    backgroundColor: Color(0xFF1C1C1C),
-    selectedItemColor: Color(0xFFFF8A65), // 高亮橙色
-    unselectedItemColor: Color(0xFF888888),
-    selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
-    type: BottomNavigationBarType.fixed,
+  textTheme: TextTheme(
+    displayLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+    bodyLarge: TextStyle(fontSize: 16, color: Colors.black87),
+    bodyMedium: TextStyle(fontSize: 14, color: Colors.black54),
+    labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
   ),
-
+  inputDecorationTheme: InputDecorationTheme(
+    border: OutlineInputBorder(),
+    filled: true,
+    fillColor: Colors.white,
+    hintStyle: TextStyle(color: Colors.black45),
+  ),
   cardTheme: const CardThemeData(
     color: Colors.white,
     elevation: 4,
-    margin: EdgeInsets.all(12),
+    surfaceTintColor: Colors.transparent,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(16)),
+      borderRadius: BorderRadius.all(Radius.circular(12)),
     ),
   ),
+  floatingActionButtonTheme: FloatingActionButtonThemeData(
+    backgroundColor: Colors.blue,
+    foregroundColor: Colors.white,
+  ),
+  iconTheme: IconThemeData(color: Colors.black87),
+  dividerColor: Colors.grey[300],
 );
+
 
 /// 暗色主题配置
 final ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   useMaterial3: true,
-  scaffoldBackgroundColor: const Color(0xFF121212),
-  colorScheme: ColorScheme.fromSeed(
-    seedColor: Colors.deepOrange,
-    brightness: Brightness.dark,
+  fontFamily: 'Roboto', // 可替换为你的自定义字体
+  colorScheme: ColorScheme.dark(
+    primary: Colors.tealAccent,
+    onPrimary: Colors.black,
+    secondary: Colors.deepOrange,
+    onSecondary: Colors.white,
+    surface: Color(0xFF1E1E1E),
+    background: Color(0xFF121212),
+    error: Colors.redAccent,
+    onError: Colors.black,
+    onSurface: Colors.white,
+    onBackground: Colors.white,
   ),
-  appBarTheme: const AppBarTheme(
+  scaffoldBackgroundColor: Color(0xFF121212),
+  appBarTheme: AppBarTheme(
     backgroundColor: Color(0xFF1F1F1F),
     foregroundColor: Colors.white,
-    elevation: 1,
-    titleTextStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+    elevation: 0,
+    titleTextStyle: TextStyle(
+      color: Colors.white,
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+    ),
   ),
-  textTheme: const TextTheme(
+  textTheme: TextTheme(
+    displayLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
     bodyLarge: TextStyle(fontSize: 16, color: Colors.white),
     bodyMedium: TextStyle(fontSize: 14, color: Colors.white70),
-    titleMedium: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+    labelLarge: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.white),
   ),
-  elevatedButtonTheme: ElevatedButtonThemeData(
-    style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.deepOrange,
-      foregroundColor: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-    ),
-  ),
-  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-    backgroundColor: Color(0xFFFFF3E0), // 更亮的橙色背景
-    selectedItemColor: Color(0xFFFF6F00), // 深橙色
-    unselectedItemColor: Color(0xFF8D8D8D),
-    selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
-    unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
-    type: BottomNavigationBarType.fixed,
+  inputDecorationTheme: InputDecorationTheme(
+    border: OutlineInputBorder(),
+    filled: true,
+    fillColor: Color(0xFF1E1E1E),
+    hintStyle: TextStyle(color: Colors.white54),
   ),
   cardTheme: const CardThemeData(
-    color: Color(0xFF2A2A2A),
-    elevation: 2,
-    margin: EdgeInsets.all(12),
+    color: Colors.black54,
+    elevation: 4,
+    surfaceTintColor: Colors.transparent,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(16)),
+      borderRadius: BorderRadius.all(Radius.circular(12)),
     ),
   ),
+  floatingActionButtonTheme: FloatingActionButtonThemeData(
+    backgroundColor: Colors.tealAccent,
+    foregroundColor: Colors.black,
+  ),
+  iconTheme: IconThemeData(color: Colors.white70),
+  dividerColor: Colors.grey[700],
 );

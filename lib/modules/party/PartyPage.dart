@@ -25,8 +25,7 @@ class _PartyPageState extends State<PartyPage> {
     final loc = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(loc.title_home),
+        title: Text(loc.nav_party),
       ),
       body: PartyView(),
       floatingActionButton: FloatingActionButton(

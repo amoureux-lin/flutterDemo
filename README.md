@@ -1,7 +1,7 @@
 
 # 🎮 Flutter 游戏大厅 App
 
-这是一个基于 Flutter 构建的游戏大厅风格 App，支持多语言、主题切换、动态内容、页面状态管理与拖动按钮等功能。采用 `Riverpod` + `GoRouter` 构建模块化结构，适用于 Web 和移动端。
+这是一个基于 Flutter 构建的App，支持多语言、主题切换、动态内容、页面状态管理与拖动按钮等功能。采用 `Riverpod` + `GoRouter` 构建模块化结构，适用于 Web 和移动端。
 
 ---
 
@@ -50,7 +50,7 @@ demo/
 - 使用 `AppLocalizations.of(context)` 获取本地化字符串
 
 ```dart
-Text(AppLocalizations.of(context)!.home);
+ //Text(AppLocalizations.of(context)!.home);
 ```
 
 ---
