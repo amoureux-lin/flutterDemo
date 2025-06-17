@@ -93,6 +93,11 @@ class HomeView extends ConsumerWidget {
                 ),
               ],
             ),
+            Text('计数: ${state.count}'),
+            ElevatedButton(
+              onPressed: controller.increment,
+              child: const Text('增加'),
+            ),
           ],
         ),
       ),
