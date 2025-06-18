@@ -4,7 +4,7 @@ import 'package:demo/modules/plaza/widget/RecommendView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../l10n/app_localizations.dart';
+import '../../../l10n/app_localizations.dart';
 
   class PlazaView extends ConsumerWidget {
   const PlazaView({super.key});
@@ -39,8 +39,8 @@ import '../../l10n/app_localizations.dart';
                     Tab(text: "推荐"),
                     Tab(text: "关注"),
                   ],
-                  labelStyle: TextStyle(fontSize: 20), // 选中时文字大小
-                  unselectedLabelStyle: TextStyle(fontSize: 18),
+                  labelStyle: TextStyle(fontSize: 17), // 选中时文字大小
+                  unselectedLabelStyle: TextStyle(fontSize: 17),
                 ),
               ),
               actions: [

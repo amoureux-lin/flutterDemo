@@ -1,5 +1,5 @@
 
-import 'package:demo/modules/plaza/PlazaView.dart';
+import 'package:demo/modules/plaza/view/PlazaView.dart';
 import 'package:flutter/material.dart';
 
 import '../../l10n/app_localizations.dart';
