@@ -1,3 +1,4 @@
+import 'package:demo/theme/app_theme_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../l10n/app_localizations.dart';
@@ -10,7 +11,9 @@ class SettingsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeMode = ref.watch(themeModeProvider);
+    final current = ref.watch(themeProvider);
+    final notifier = ref.read(themeProvider.notifier);
+
     final locale = ref.watch(localeProvider);
     final loc = AppLocalizations.of(context)!;
 
@@ -32,26 +35,31 @@ class SettingsPage extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text(loc.settings_title),centerTitle: true,),
+      appBar: AppBar(title: Text(loc.settings_title)),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ListTile(
-              title: Text(loc.theme_label),
-              subtitle: Text(getThemeLabel(themeMode)),
-              trailing: ElevatedButton(
-                onPressed: () {
-                  final next = switch (themeMode) {
-                    ThemeMode.light => ThemeMode.dark,
-                    ThemeMode.dark => ThemeMode.system,
-                    ThemeMode.system => ThemeMode.light,
-                  };
-                  // 切换主题
-                  ref.read(themeModeProvider.notifier).set(next);
-                },
-                child: Text(loc.theme_button),
-              ),
+            Column(
+              children: [
+                Text("当前主题: ${current.label}"),
+                DropdownButton<AppTheme>(
+                  value: current,
+                  items: AppTheme.values.map((theme) {
+                    return DropdownMenuItem<AppTheme>(
+                      value: theme,
+                      child: Text(theme.label),
+                    );
+                  }).toList(),
+                  onChanged: (theme) {
+                    if (theme != null) notifier.setTheme(theme);
+                  },
+                ),
+                ElevatedButton(
+                  onPressed: notifier.cycleTheme,
+                  child: const Text("循环切换主题"),
+                ),
+              ],
             ),
             const SizedBox(height: 16),
             ListTile(

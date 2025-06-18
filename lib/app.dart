@@ -1,6 +1,7 @@
 import 'package:demo/providers/localeProvider.dart';
 import 'package:demo/providers/themeProvider.dart';
-import 'package:demo/theme/theme.dart';
+import 'package:demo/theme/app_theme_enum.dart';
+import 'package:demo/theme/app_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -12,24 +13,25 @@ class MyApp extends ConsumerWidget  {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeMode = ref.watch(themeModeProvider);
+    final appTheme = ref.watch(themeProvider);
+    final themeData = appThemes[appTheme]!;
     final locale = ref.watch(localeProvider);
     return MaterialApp.router(
-      theme: lightTheme, // 亮色主题
-      darkTheme: darkTheme, // 暗色主题（可选）
-      locale: locale, // 默认语言
-      themeMode: themeMode, // 跟随系统，或设置为 ThemeMode.light / dark
-      routerConfig: routerConfig,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('en'), // 英文
-        Locale('zh'), // 简体中文
-      ],
+        theme: themeData,
+        darkTheme: appThemes[AppTheme.dark],
+        themeMode: ThemeMode.light, // 如果你用自定义主题就不要 ThemeMode.system
+        locale: locale,
+        routerConfig: routerConfig,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('en'), // 英文
+          Locale('zh'), // 简体中文
+        ],
         debugShowCheckedModeBanner:false
     );
   }
