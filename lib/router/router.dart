@@ -1,4 +1,5 @@
 import 'package:demo/modules/settings/SettingsPage.dart';
+import 'package:demo/widgets/KeepAliveWrapper.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
@@ -19,23 +20,23 @@ final GoRouter routerConfig = GoRouter(
       routes: [
         GoRoute(
           path: '/home',
-          pageBuilder: (context, state) => buildTransitionPage(const HomePage(title: '')),
+          pageBuilder: (context, state) => buildTransitionPage(const HomePage()),
         ),
         GoRoute(
           path: '/party',
-          pageBuilder: (context, state) => buildTransitionPage(const PartyPage(title: '')),
+          pageBuilder: (context, state) => buildTransitionPage(const PartyPage()),
         ),
         GoRoute(
           path: '/plaza',
-          pageBuilder: (context, state) => buildTransitionPage(const PlazaPage(title: '')),
+          pageBuilder: (context, state) => buildTransitionPage(const KeepAliveWrapper(child: PlazaPage())),
         ),
         GoRoute(
           path: '/club',
-          pageBuilder: (context, state) => buildTransitionPage(const ClubPage(title: '')),
+          pageBuilder: (context, state) => buildTransitionPage(const ClubPage()),
         ),
         GoRoute(
           path: '/profile',
-          pageBuilder: (context, state) => buildTransitionPage(const ProfilePage(title: '')),
+          pageBuilder: (context, state) => buildTransitionPage(const ProfilePage()),
         ),
       ],
     ),

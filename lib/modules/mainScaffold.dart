@@ -1,7 +1,9 @@
+import 'package:demo/widgets/KeepAliveWrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../l10n/app_localizations.dart';
+
 
 class MainScaffold extends StatelessWidget {
   final Widget child;
@@ -17,7 +19,7 @@ class MainScaffold extends StatelessWidget {
     int currentIndex = tabs.indexWhere((path) => location.startsWith(path));
 
     return Scaffold(
-      body: child,
+      body: KeepAliveWrapper(child: child),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex < 0 ? 0 : currentIndex,
         type: BottomNavigationBarType.fixed, // ✅ 必须加这个

@@ -1,18 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../core/utils/DeviceUtils.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../widgets/appUI.dart';
-import '../../../widgets/draggableFab.dart';
 import '../provider/HomeProvider.dart';
 import '../widget/home_menu_row.dart';
 import '../widget/home_user_bar.dart';
 import '../widget/party_card.dart';
 
-class HomeView extends ConsumerWidget {
+class HomeView extends ConsumerStatefulWidget {
   const HomeView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends ConsumerState<HomeView>{
+
+  String? fingerprint;
+
+  @override
+  void initState() {
+    super.initState();
+    _initFingerprint();
+  }
+
+  Future<void> _initFingerprint() async {
+    final fp = await getCanvasFingerprint();
+    setState(() {
+      fingerprint = fp;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final state = ref.watch(homeProvider);
     final controller = ref.read(homeProvider.notifier);
     final loc = AppLocalizations.of(context)!;
@@ -98,6 +118,7 @@ class HomeView extends ConsumerWidget {
               onPressed: controller.increment,
               child: const Text('增加'),
             ),
+            Text(fingerprint!),
           ],
         ),
       ),

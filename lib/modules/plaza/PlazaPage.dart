@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
 
 class PlazaPage extends StatefulWidget {
-  const PlazaPage({super.key, required this.title});
-  final String title;
+  const PlazaPage({super.key});
   @override
   State<PlazaPage> createState() => _PlazaPageState();
 }

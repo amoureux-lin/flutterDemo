@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart'; // 确保导入
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key, required this.title});
-  final String title;
+  const ProfilePage({super.key});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -26,7 +25,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text("个人中心"),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),

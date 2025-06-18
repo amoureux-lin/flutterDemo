@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import '../../l10n/app_localizations.dart';
 
 class PartyPage extends StatefulWidget {
-  const PartyPage({super.key, required this.title});
-  final String title;
+  const PartyPage({super.key});
   @override
   State<PartyPage> createState() => _PartyPageState();
 }
